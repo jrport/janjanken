@@ -5,8 +5,26 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script type = "text/javascript" src = "script.js"></script>
+        <link rel="stylesheet" href="styles.css">
     </head>
-    <body style="background-color: grey;">
-       <p style="color: red;">OPEN CONSOLE</p> 
+    <body>
+        <div id="title-center">
+            <p id="title">Rock Paper Scissors</p>
+        </div>
+        <div class="score-board">
+            <div class="player-score">
+                <p id="playerChoice">❔</p>
+                <p id="playerScore">Player:</p> 
+            </div>
+           <div class="computer-score">
+               <p id="computerChoice">❔</p>
+               <p id="pcScore">Computer:</p> 
+           </div>
+        </div>
+        <div class="buttons">
+           <button id="rock"><div class="sign">✊</div></button> 
+           <button id="paper"><div class="sign">✋</div></button> 
+           <button id="scissors"><div class="sign">✌ </div></button> 
+        </div>
     </body>
 </html>

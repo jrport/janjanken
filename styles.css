@@ -1,0 +1,58 @@
+:root {
+    --deep-dark: #222831;
+    --light-dark: #393e46;
+}
+
+
+body { 
+    background-color: var(--light-dark);
+    color: white;
+    margin: 0;
+}
+
+#title-center {
+    margin: 0;
+    background-color: var(--deep-dark);
+    display: flex;
+    justify-content: center;
+}
+
+#title {
+    text-align: center;
+    font-size: 38px;
+}
+
+.score-board {
+    display: flex;
+    justify-content: center;
+    gap: 15em;
+    font-size: 20px;
+}
+
+#playerChoice, #computerChoice {
+   padding-top: 3em; 
+   font-size: 24px;
+   text-align: center;
+   padding-bottom: 1em;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 3em;
+    gap: 4em;
+}
+
+button {
+    width: 3em;
+    height: 3em;
+}
+
+#scissors, #rock, #paper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 6em;
+    height: auto;
+}
