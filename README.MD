@@ -1,1 +1,1 @@
-Simple js scripts for me to test and learn about js queries, arrow =>, maps and anon/async functions.
+Simple web app that simulates a game of rock, paper, scissors built only using vanilla css and js.
