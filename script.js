@@ -2,9 +2,18 @@ const scsBtn = document.querySelector("#scissors");
 const rckBtn = document.querySelector('div>button#rock');
 const prpBtn = document.querySelector("#paper");
 
-rckBtn.addEventListener("click", game("PEDRA"));
-prpBtn.addEventListener("click", game("PAPEL"));
-scsBtn.addEventListener("click", game("TESOURA"));
+let playerScore = 0;
+let computerScore = 0;
+
+const choiceEmoji = {
+    "PEDRA": "🪨",
+    "TESOURA": "✂️",
+    "PAPEL": "📄",
+}
+
+rckBtn.addEventListener("click", () => game("PEDRA"));
+prpBtn.addEventListener("click", () => game("PAPEL"));
+scsBtn.addEventListener("click", () => game("TESOURA"));
 
 function getComputerChoice() {
     const options = ["PEDRA","PAPEL","TESOURA"];
@@ -16,74 +25,81 @@ function getComputerChoice() {
 function playMatch(playerChoice, computerChoice) {
     switch (true) {
         case (playerChoice == computerChoice):
-            return [("EMPATE"),"E"];
+            return [("IT'S A DRAW!"),"E"];
         case (playerChoice == "PAPEL" && computerChoice == "TESOURA"):
         case (playerChoice == "TESOURA" && computerChoice == "PEDRA"):
         case (playerChoice == "PEDRA" && computerChoice == "PAPEL"):
-            return [(`DERROTA! Infelizmente, a sua escolha ${playerChoice} perdeu para ${computerChoice}`),"V"];
+            return [(`DEFEAT! Unfortunately your ${playerChoice} lost to your enemy's ${computerChoice} might!`),"V"];
         default:
-            return [(`VITORIA! Felizmente, a sua escolha ${playerChoice} ganhou de ${computerChoice}`),"D"];
+            return [(`VICTORY! Fortunatly, your ${playerChoice} won over your opponent's ${computerChoice}`),"D"];
     }
 }
 
-let playerScore;
-let computerScore;
 
-function game(playerChoice) {
-    let playerChoice;
+function game(playerChoice) { 
     let computerChoice = getComputerChoice();
-
     let msgRound = playMatch(playerChoice,computerChoice);
     
-    switch (msgRound[2]) {
+    updatePickDisplay(playerChoice,computerChoice);
+
+    switch (msgRound[1]) {
         case "V":
             playerScore ++; 
             updateScore("Player");
+            updateMsg(msgRound[0])
             break;
         case "D":
             computerScore ++;
             updateScore("Computer");
+            updateMsg(msgRound[0])
             break;
         default:
+            updateMsg(msgRound[0])
             break;
     }
-    if (playerScore > 5) {
+    if (playerScore >= 5) {
         endMatch("Player");
     }
-    if (computerScore > 5) {
+    if (computerScore >= 5) {
         endMatch("Computer");
     }
 }
 
+const msgDisplay = document.querySelector("#message");
+
+function updateMsg(newMsg) {
+   msgDisplay.textContent = newMsg; 
+}
+
+const playerChoice = document.querySelector("#playerChoice");
+const computerChoice = document.querySelector("#computerChoice");
+
+function updatePickDisplay(playerPick, computerPick) {
+    playerChoice.textContent = choiceEmoji[playerPick];
+    computerChoice.textContent = choiceEmoji[computerPick];
+}
+
 const playerDisplay = document.querySelector("#playerScore");
-const computerDisplay = document.querySelector("pcScore");
+const computerDisplay = document.querySelector("#pcScore");
 
 function updateScore(winner) {
+    console.log(winner);
     switch (winner) {
         case "Player":
             playerDisplay.textContent = `Player: ${playerScore}`;
             break;
         case "Computer":
-            computerScore.textContent = `Computer: ${computerScore}`;
+            computerDisplay.textContent = `Computer: ${computerScore}`;
             break;
         default:
             playerDisplay.textContent = "Player: 0";
-            computerScore.textContent = "Computer: 0";
+            computerDisplay.textContent = "Computer: 0";
             break;
     } 
 }
 
 function endMatch(winner) {
-    switch (winner) {
-        case "Player":
-
-            break;
-        case "Computer":
-
-            break;
-        default:
-            break;
-    } 
+    msgDisplay.textContent = `THE ${winner} WINS!`;
     playerScore = 0;
     computerScore = 0;
     updateScore("reset");
