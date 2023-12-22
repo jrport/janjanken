@@ -105,34 +105,3 @@ function endMatch(winner) {
     updateScore("reset");
 }
 
-//function game() {
-//    let playerScore = 0;
-//    let npcScore = 0;
-//
-//    let playerChoice;
-//    let computerChoice;
-//    computerChoice = getComputerChoice();
-//
-//    let msgRound;
-//    while (npcScore < 5 && playerScore < 5) {
-//        msgRound = playMatch(playerChoice, computerChoice);
-//        switch (msgRound[0]) {
-//            case "V":
-//                playerScore++;
-//                break;
-//            case "D":
-//                npcScore++;
-//                break;
-//            default:
-//                break;
-//        };
-//        console.log(msgRound);
-//    };
-//    if (playerScore > npcScore) {
-//        console.log("Você venceu a partida!");
-//    }
-//    else {
-//        console.log("Você perdeu a partida!");
-//    }
-//    console.log(`O placar final foi de ${playerScore} X ${npcScore}`);
-//}
